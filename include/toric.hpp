@@ -1,5 +1,6 @@
 #ifndef TORIC_HPP_
 #define TORIC_HPP_
+#include <vector>
 
 int coordinate2num(int x, int y, int d);
 int num2x(int n, int d);
