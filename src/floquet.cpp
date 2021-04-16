@@ -38,3 +38,13 @@ void tc_stab_z(double theta, int dx, int dz, cx_dvec &psi)
       apply_ppr(0, v, theta, psi);
     }
 }
+
+void tc_logical_x(double theta, int dx, int dz, cx_dvec &psi)
+{
+  apply_ppr(logical_x_nu(dx, dz), 0, theta, psi);
+}
+
+void tc_logical_z(double theta, int dx, int dz, cx_dvec &psi)
+{
+  apply_ppr(0, logical_z_nu(dx, dz), theta, psi);
+}

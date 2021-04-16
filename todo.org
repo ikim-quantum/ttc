@@ -13,9 +13,11 @@
 * [2/2] Logical floquet
   - [X] toric.hpp/toric.cpp
   - [X] toric.cpp test
-* [1/3] Floquet dynamics
+* [2/5] Floquet dynamics
   - [X] Stabilizer
-  - [ ] Logical
+  - [X] Logical
+  - [ ] Initial state
+  - [ ] Measurement 
   - [ ] Test
 * [0/2] MWPM
   - [ ] Conversion of input bits to syndrome information
