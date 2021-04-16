@@ -10,10 +10,13 @@
   - [X] Bulk test
   - [X] Boundary test
 
-* [0/2] Floquet dynamics
-  - [ ] Implementation
+* [1/2] Logical floquet
+  - [X] toric.hpp/toric.cpp
+  - [ ] toric.cpp test
+* [1/3] Floquet dynamics
+  - [X] Stabilizer
+  - [ ] Logical
   - [ ] Test
-
 * [0/2] MWPM
   - [ ] Conversion of input bits to syndrome information
   - [ ] Syndrome to MWPM decoder

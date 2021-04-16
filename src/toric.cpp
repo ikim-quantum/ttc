@@ -196,6 +196,28 @@ std::vector<int> stab_z_bdy(int d)
   return vec;
 }
 
+int logical_x(int d)
+{
+  int out =0;
+  for (int x=0; x<d; x++)
+    {
+      out |= (1<<(coordinate2num(x, 0, d)));
+    }
+  return out;
+}
+
+int logical_z(int d)
+{
+  int out =0;
+  for (int y=0; y<d; y++)
+    {
+      out |= (1<<(coordinate2num(0, y, d)));
+    }
+  return out;
+}
+
+// Now switching to the non-uniform case
+
 
 int coordinate2num_nu(int x, int y, int dx, int dz)
 {
@@ -362,4 +384,24 @@ std::vector<int> stab_z_bdy_nu(int dx, int dz)
     }
     
   return vec;
+}
+
+int logical_x_nu(int dx, int dz)
+{
+  int out =0;
+  for (int x=0; x<dx; x++)
+    {
+      out |= (1<<(coordinate2num(x, 0, dx)));
+    }
+  return out;
+}
+
+int logical_z_nu(int dx, int dz)
+{
+  int out =0;
+  for (int y=0; y<dz; y++)
+    {
+      out |= (1<<(coordinate2num(0, y, dz)));
+    }
+  return out;
 }

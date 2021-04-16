@@ -11,6 +11,9 @@ std::vector<int> stab_z_bulk(int d);
 std::vector<int> stab_x_bdy(int d);
 std::vector<int> stab_z_bdy(int d);
 
+int logical_x(int d);
+int logical_z(int d);
+
 // "nu" means non-uniform, i.e., (possibly) different values of x- and z-distance. 
 int coordinate2num_nu(int x, int y, int dx, int dz);
 int num2x_nu(int n, int dx, int dz);
@@ -20,5 +23,8 @@ std::vector<int> stab_x_bulk_nu(int dx, int dz);
 std::vector<int> stab_z_bulk_nu(int dx, int dz);
 std::vector<int> stab_x_bdy_nu(int dx, int dz);
 std::vector<int> stab_z_bdy_nu(int dx, int dz);
+
+int logical_x_nu(int dx, int dz);
+int logical_z_nu(int dx, int dz);
 
 #endif // TORIC_HPP_
