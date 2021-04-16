@@ -19,12 +19,10 @@
   - [X] Initial state
   - [X] Measurement 
   - [X] Test
-* [/] Floquet dynamics : Perturbation
-  - [ ] Onsite X
-  - [ ] Onsite Z
-  - [ ] Nearest-neighbor XX
-  - [ ] Nearest-neighbor ZZ
-  - [ ] Test
+* [3/3] Floquet dynamics : Perturbation
+  - [X] Onsite X
+  - [X] Onsite Z
+  - [X] Test
 * [0/2] MWPM
   - [ ] Conversion of input bits to syndrome information
   - [ ] Syndrome to MWPM decoder

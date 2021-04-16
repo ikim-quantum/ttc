@@ -75,3 +75,19 @@ double measure_logical_z(int dx, int dz, cx_dvec &psi)
 {
   return measure_pp(0, logical_z_nu(dx, dz), psi);
 }
+
+void global_x(double theta, int dx, int dz, cx_dvec &psi)
+{
+  for (int i=0; i<dx*dz; i++)
+    {
+      apply_ppr(1<<i, 0, theta, psi);
+    }
+}
+
+void global_z(double theta, int dx, int dz, cx_dvec &psi)
+{
+  for (int i=0; i<dx*dz; i++)
+    {
+      apply_ppr(0, 1<<i, theta, psi);
+    }
+}
