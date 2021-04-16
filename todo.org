@@ -1,0 +1,19 @@
+* [2/4] Boundary
+  - [X] Boundary z-term implementation
+  - [ ] Boundary z-term test
+  - [X] Boundary x-term implementation
+  - [ ] Boundary x-term test
+
+* [0/4] Upgrade for variable x and y lengths
+  - [ ] Bulk term
+  - [ ] Boundary term
+  - [ ] Bulk test
+  - [ ] Boundary test
+
+* [0/2] Floquet dynamics
+  - [ ] Implementation
+  - [ ] Test
+
+* [0/2] MWPM
+  - [ ] Conversion of input bits to syndrome information
+  - [ ] Syndrome to MWPM decoder
