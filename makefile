@@ -23,6 +23,9 @@ test_color_big: pauli_product.o floquet.o ./test/test_color_big.cpp
 test_toric: toric.o ./test/test_toric.cpp
 	$(CXX) -o test_toric toric.o ./test/test_toric.cpp $(CPPFLAGS)
 
+test_toric_nu: toric.o ./test/test_toric_nu.cpp
+	$(CXX) -o test_toric_nu toric.o ./test/test_toric_nu.cpp $(CPPFLAGS)
+
 exp_color_disordered: pauli_product.o floquet.o ./experiment/d=3.cpp
 	$(CXX) -o exp_color_disordered floquet.o pauli_product.o ./experiment/d=3.cpp $(CPPFLAGS)
 

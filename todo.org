@@ -1,14 +1,14 @@
-* [2/4] Boundary
+* [4/4] Boundary
   - [X] Boundary z-term implementation
-  - [ ] Boundary z-term test
+  - [X] Boundary z-term test
   - [X] Boundary x-term implementation
-  - [ ] Boundary x-term test
+  - [X] Boundary x-term test
 
-* [0/4] Upgrade for variable x and y lengths
-  - [ ] Bulk term
-  - [ ] Boundary term
-  - [ ] Bulk test
-  - [ ] Boundary test
+* [4/4] Upgrade for variable x and y lengths
+  - [X] Bulk term
+  - [X] Boundary term
+  - [X] Bulk test
+  - [X] Boundary test
 
 * [0/2] Floquet dynamics
   - [ ] Implementation
