@@ -48,3 +48,28 @@ void tc_logical_z(double theta, int dx, int dz, cx_dvec &psi)
 {
   apply_ppr(0, logical_z_nu(dx, dz), theta, psi);
 }
+
+cx_dvec initial_allzero(int dx, int dz)
+{
+  cx_dvec psi;
+  psi.zeros(1<<(dx*dz));
+  psi(0) = 1;
+  return psi;
+}
+
+cx_dvec initial_allplus(int dx, int dz)
+{
+  cx_dvec psi(dx*dz, fill::ones);
+  psi *= 1.0/(1<<(dx*dz));
+  return psi;
+}
+
+double measure_logical_x(int dx, int dz, cx_dvec &psi)
+{
+  return measure_pp(logical_x_nu(dx, dz), 0, psi);
+}
+
+double measure_logical_z(int dx, int dz, cx_dvec &psi)
+{
+  return measure_pp(logical_z_nu(dx, dz), 0, psi);
+}
