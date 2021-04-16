@@ -125,8 +125,8 @@ void apply_ppr(unsigned int x, unsigned int z, double theta, cx_dvec &psi)
   s = sin(theta);
   //  cx_double csc;
   //  csc = 1.0 / cos(theta);
-  bool not_changed[(1<<20)];
-  fill_n(not_changed, (1<<20), true);
+  bool* not_changed = new bool[(1<<25)];
+  fill_n(not_changed, (1<<25), true);
 
   for (int y=0; y<d; y++)
     {
@@ -183,6 +183,7 @@ void apply_ppr(unsigned int x, unsigned int z, double theta, cx_dvec &psi)
 	}
       
     }
+  delete[] not_changed;
 }
 
 void apply_ppr_slow(unsigned int x, unsigned int z, double theta, cx_dvec &psi)
