@@ -20,38 +20,48 @@ int main(int argc, char *argv[])
   cout << "X-checks (bulk): " << endl;
   for (auto i = xchecks_bulk.begin(); i != xchecks_bulk.end(); ++i)
     {
-      cout << endl;
-      const string str = std::bitset<n>(*i).to_string();
-      std::cout << str.substr(str.size()-d*d,str.size()) << ' ';
-    }
-  cout << endl << endl;
-
-  cout << "Z-checks (bulk): " << endl;
-  for (auto i = zchecks_bulk.begin(); i != zchecks_bulk.end(); ++i)
-    {
-      cout << endl;
       const string str = std::bitset<n>(*i).to_string();
       std::cout << str.substr(str.size()-d*d,str.size()) << ' ';
     }
   cout << endl;
+
+  cout << "Z-checks (bulk): " << endl;
+  for (auto i = zchecks_bulk.begin(); i != zchecks_bulk.end(); ++i)
+    {
+      const string str = std::bitset<n>(*i).to_string();
+      std::cout << str.substr(str.size()-d*d,str.size()) << ' ';
+    }
+  cout << endl<<endl;
 
   
   cout << "X-checks (boundary): " << endl;
   for (auto i = xchecks_bdy.begin(); i != xchecks_bdy.end(); ++i)
     {
-      cout << endl;
-      const string str = std::bitset<n>(*i).to_string();
-      std::cout << str.substr(str.size()-d*d,str.size()) << ' ';
-    }
-  cout << endl << endl;
-
-  cout << "Z-checks (boundary): " << endl;
-  for (auto i = zchecks_bdy.begin(); i != zchecks_bdy.end(); ++i)
-    {
-      cout << endl;
       const string str = std::bitset<n>(*i).to_string();
       std::cout << str.substr(str.size()-d*d,str.size()) << ' ';
     }
   cout << endl;
- 
+
+  cout << "Z-checks (boundary): " << endl;
+  for (auto i = zchecks_bdy.begin(); i != zchecks_bdy.end(); ++i)
+    {
+      const string str = std::bitset<n>(*i).to_string();
+      std::cout << str.substr(str.size()-d*d,str.size()) << ' ';
+    }
+  cout << endl<<endl;
+
+  cout <<"Logical X:" << endl;
+  {
+    const string str = std::bitset<n>(logical_x(d)).to_string();
+    std::cout << str.substr(str.size()-d*d,str.size()) << ' ';
+  }
+
+  cout << endl;
+  
+  cout <<"Logical Z:" << endl;
+  {
+    const string str = std::bitset<n>(logical_z(d)).to_string();
+    std::cout << str.substr(str.size()-d*d,str.size());
+    cout << endl;
+  }
 }

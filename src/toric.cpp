@@ -391,7 +391,7 @@ int logical_x_nu(int dx, int dz)
   int out =0;
   for (int x=0; x<dx; x++)
     {
-      out |= (1<<(coordinate2num(x, 0, dx)));
+      out |= (1<<(coordinate2num_nu(x, 0, dx, dz)));
     }
   return out;
 }
@@ -401,7 +401,7 @@ int logical_z_nu(int dx, int dz)
   int out =0;
   for (int y=0; y<dz; y++)
     {
-      out |= (1<<(coordinate2num(0, y, dz)));
+      out |= (1<<(coordinate2num_nu(0, y, dx, dz)));
     }
   return out;
 }
