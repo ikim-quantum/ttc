@@ -27,4 +27,7 @@ std::vector<int> stab_z_bdy_nu(int dx, int dz);
 int logical_x_nu(int dx, int dz);
 int logical_z_nu(int dx, int dz);
 
+std::vector<bool> measure_stab_x(int dx, int dz, int xstring);
+std::vector<bool> measure_stab_z(int dx, int dz, int zstring);
+
 #endif // TORIC_HPP_

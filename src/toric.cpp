@@ -1,6 +1,7 @@
 #include "../include/toric.hpp"
 #include <stdlib.h>
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -404,4 +405,41 @@ int logical_z_nu(int dx, int dz)
       out |= (1<<(coordinate2num_nu(0, y, dx, dz)));
     }
   return out;
+}
+
+// Convention is the bulk stabilizers first and then the boundary
+// stabilizers.
+
+std::vector<bool> measure_stab_x(int dx, int dz, int xstring)
+{
+  std::vector<bool> syndromes_x; 
+  std::vector<int> xchecks_bulk = stab_x_bulk_nu(dx, dz);
+  std::vector<int> xchecks_bdy = stab_x_bdy_nu(dx, dz);
+
+  for (int v: xchecks_bulk)
+    {
+      syndromes_x.push_back(__builtin_popcount(xstring&v)%2);
+    }
+  for (int v: xchecks_bdy)
+    {
+      syndromes_x.push_back(__builtin_popcount(xstring&v)%2);
+    }
+  return syndromes_x;
+}
+
+std::vector<bool> measure_stab_z(int dx, int dz, int zstring)
+{
+  std::vector<bool> syndromes_z; 
+  std::vector<int> zchecks_bulk = stab_z_bulk_nu(dx, dz);
+  std::vector<int> zchecks_bdy = stab_z_bdy_nu(dx, dz);
+
+  for (int v: zchecks_bulk)
+    {
+      syndromes_z.push_back(__builtin_popcount(zstring&v)%2);
+    }
+  for (int v: zchecks_bdy)
+    {
+      syndromes_z.push_back(__builtin_popcount(zstring&v)%2);
+    }
+  return syndromes_z;
 }

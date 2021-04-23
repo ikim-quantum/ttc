@@ -65,5 +65,24 @@ int main(int argc, char *argv[])
     std::cout << str.substr(str.size()-dx*dz,str.size());
     cout << endl;
   }
+
+  cout <<"Generating random bit string" << endl;
+  int mystring = rand()%(1<<(dx*dz));
+  const string mystring_str = std::bitset<n>(mystring).to_string();
+  std::cout<<"Mystring="<<mystring_str.substr(mystring_str.size() - dx*dz, mystring_str.size())<<endl;
+  
+  std::vector<bool> syndromes_x = measure_stab_x(dx, dz, mystring);
+  cout << "X-checks (bulk): " << endl;
+  for (bool s: syndromes_x)
+    {
+      std::cout << s << endl;
+    }
+
+  std::vector<bool> syndromes_z = measure_stab_z(dx, dz, mystring);
+  cout << "Z-checks (bulk): " << endl;
+  for (bool s: syndromes_z)
+    {
+      std::cout << s << endl;
+    }
   
 }

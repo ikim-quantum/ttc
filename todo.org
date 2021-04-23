@@ -13,12 +13,13 @@
 * [2/2] Logical floquet
   - [X] toric.hpp/toric.cpp
   - [X] toric.cpp test
-* [5/5] Floquet dynamics
+* [5/6] Floquet dynamics
   - [X] Stabilizer
   - [X] Logical
   - [X] Initial state
   - [X] Measurement 
   - [X] Test
+  - [ ] Generalized exp(iYtheta) state prep
 * [3/3] Floquet dynamics : Perturbation
   - [X] Onsite X
   - [X] Onsite Z
