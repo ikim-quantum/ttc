@@ -24,6 +24,19 @@
   - [X] Onsite X
   - [X] Onsite Z
   - [X] Test
-* [0/2] MWPM
-  - [ ] Conversion of input bits to syndrome information
-  - [ ] Syndrome to MWPM decoder
+* [1/1] MWPM: Setup
+  - [X] Conversion of input bits to syndrome information
+* [0/6] MWPM: X
+    - [ ] Generate all real nodes
+    - [ ] Generate all virtual nodes
+    - [ ] Generate all edges
+    - [ ] node_a
+    - [ ] node_b
+    - [ ] weights for each edge
+* [0/6] MWPM: Z
+    - [ ] Generate all real nodes
+    - [ ] Generate all virtual nodes
+    - [ ] Generate all edges
+    - [ ] node_a
+    - [ ] node_b
+    - [ ] weights for each edge
