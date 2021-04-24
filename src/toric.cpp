@@ -44,9 +44,9 @@ int num2y(int n, int d)
   return n/d;
 }
 
-std::vector<int> stab_x_bulk(int d)
+std::vector<std::tuple<int, int, int>> stab_x_bulk(int d)
 {
-  std::vector<int> vec;
+  std::vector<std::tuple<int, int, int>> vec;
   for (int x=0; x<d; x++)
     {
       for (int y=0; y<d; y++)
@@ -59,7 +59,7 @@ std::vector<int> stab_x_bulk(int d)
 		  int n1 = coordinate2num(x+1,y,d);
 		  int n2 = coordinate2num(x,y+1,d);
 		  int n3 = coordinate2num(x+1,y+1,d);
-		  vec.push_back((1<<n0) | (1<<n1) | (1<<n2) | (1<<n3));
+		  vec.push_back(std::make_tuple(x, y, (1<<n0) | (1<<n1) | (1<<n2) | (1<<n3)));
 		}
 	    }
 	  else if ((y%2==1) && (y+1<d))
@@ -70,7 +70,7 @@ std::vector<int> stab_x_bulk(int d)
 		  int n1 = coordinate2num(x+1,y,d);
 		  int n2 = coordinate2num(x,y+1,d);
 		  int n3 = coordinate2num(x+1,y+1,d);
-		  vec.push_back((1<<n0) | (1<<n1) | (1<<n2) | (1<<n3));
+		  vec.push_back(std::make_tuple(x,y, (1<<n0) | (1<<n1) | (1<<n2) | (1<<n3)));
 		}
 	    }
 	}
@@ -79,9 +79,9 @@ std::vector<int> stab_x_bulk(int d)
   return vec;
 }
 
-std::vector<int> stab_z_bulk(int d)
+std::vector<std::tuple<int, int, int>> stab_z_bulk(int d)
 {
-  std::vector<int> vec;
+  std::vector<std::tuple<int, int, int>> vec;
   for (int x=0; x<d; x++)
     {
       for (int y=0; y<d; y++)
@@ -94,7 +94,7 @@ std::vector<int> stab_z_bulk(int d)
 		  int n1 = coordinate2num(x+1,y,d);
 		  int n2 = coordinate2num(x,y+1,d);
 		  int n3 = coordinate2num(x+1,y+1,d);
-		  vec.push_back((1<<n0) | (1<<n1) | (1<<n2) | (1<<n3));
+		  vec.push_back(std::make_tuple(x, y, (1<<n0) | (1<<n1) | (1<<n2) | (1<<n3)));
 		}
 	    }
 	  else if ((y%2==1) && (y+1<d))
@@ -105,7 +105,7 @@ std::vector<int> stab_z_bulk(int d)
 		  int n1 = coordinate2num(x+1,y,d);
 		  int n2 = coordinate2num(x,y+1,d);
 		  int n3 = coordinate2num(x+1,y+1,d);
-		  vec.push_back((1<<n0) | (1<<n1) | (1<<n2) | (1<<n3));
+		  vec.push_back(std::make_tuple(x, y, (1<<n0) | (1<<n1) | (1<<n2) | (1<<n3)));
 		}
 	    }
 	}
@@ -114,9 +114,9 @@ std::vector<int> stab_z_bulk(int d)
   return vec;
 }
 
-std::vector<int> stab_x_bdy(int d)
+std::vector<std::tuple<int, int, int>> stab_x_bdy(int d)
 {
-  std::vector<int> vec;
+  std::vector<std::tuple<int, int, int>> vec;
 
   for (int y=0; y<d; y++)
     {
@@ -124,7 +124,7 @@ std::vector<int> stab_x_bdy(int d)
 	{
 	  int n0 = coordinate2num(0,y,d);
 	  int n1 = coordinate2num(0,y+1,d);
-	  vec.push_back((1<<n0) | (1<<n1));
+	  vec.push_back(std::make_tuple(0, y, (1<<n0) | (1<<n1)));
 	}
     }
 
@@ -136,7 +136,7 @@ std::vector<int> stab_x_bdy(int d)
 	    {
 	      int n0 = coordinate2num(d-1,y,d);
 	      int n1 = coordinate2num(d-1,y+1,d);
-	      vec.push_back((1<<n0) | (1<<n1));
+	      vec.push_back(std::make_tuple(d-1, y, (1<<n0) | (1<<n1)));
 	    }
 	}
     }
@@ -148,7 +148,7 @@ std::vector<int> stab_x_bdy(int d)
 	    {
 	      int n0 = coordinate2num(d-1,y,d);
 	      int n1 = coordinate2num(d-1,y+1,d);
-	      vec.push_back((1<<n0) | (1<<n1));
+	      vec.push_back(std::make_tuple(d-1, y, (1<<n0) | (1<<n1)));
 	    }
 	}
     }
@@ -156,16 +156,16 @@ std::vector<int> stab_x_bdy(int d)
   return vec;
 }
 
-std::vector<int> stab_z_bdy(int d)
+std::vector<std::tuple<int, int, int>> stab_z_bdy(int d)
 {
-  std::vector<int> vec;
+  std::vector<std::tuple<int, int, int>> vec;
   for (int x=0; x<d; x++)
     {
       if ((x%2==0) && ((x+1)<d))
 	{
 	  int n0 = coordinate2num(x,0,d);
 	  int n1 = coordinate2num(x+1,0,d);
-	  vec.push_back((1<<n0) | (1<<n1));
+	  vec.push_back(std::make_tuple(x, 0, (1<<n0) | (1<<n1)));
 	}
     }
   
@@ -177,7 +177,7 @@ std::vector<int> stab_z_bdy(int d)
 	    {
 	      int n0 = coordinate2num(x,d-1,d);
 	      int n1 = coordinate2num(x+1,d-1,d);
-	      vec.push_back((1<<n0) | (1<<n1));
+	      vec.push_back(std::make_tuple(x, d-1, (1<<n0) | (1<<n1)));
 	    }
 	}
     }
@@ -189,7 +189,7 @@ std::vector<int> stab_z_bdy(int d)
 	    {
 	      int n0 = coordinate2num(x,d-1,d);
 	      int n1 = coordinate2num(x+1,d-1,d);
-	      vec.push_back((1<<n0) | (1<<n1));
+	      vec.push_back(std::make_tuple(x, d-1, (1<<n0) | (1<<n1)));
 	    }
 	}
     }

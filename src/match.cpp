@@ -1,8 +1,7 @@
 //#include <stdio.h>
 #include "../libs/blossom/PerfectMatching.h"
-​
+
 extern "C" {
-​
     /*
         Integer that represents infinity (Blossom V algorithm).
 ​
@@ -11,7 +10,6 @@ extern "C" {
     int infty() {
         return PM_INFTY;
     }
-​
     /*
         Minimum weight perfect matching.
 ​
@@ -45,3 +43,5 @@ extern "C" {
     }
 ​
 }
+
+

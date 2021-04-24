@@ -26,6 +26,9 @@
   - [X] Test
 * [1/1] MWPM: Setup
   - [X] Conversion of input bits to syndrome information
+* [0/1] Toric code update
+   - [ ] Add the stabilizer vec that includes the x and y coordinates
+   - [ ] Test
 * [0/6] MWPM: X
     - [ ] Generate all real nodes
     - [ ] Generate all virtual nodes
