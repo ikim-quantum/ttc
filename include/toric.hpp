@@ -5,6 +5,7 @@
 int coordinate2num(int x, int y, int d);
 int num2x(int n, int d);
 int num2y(int n, int d);
+void print_surface(int dx, int dz, int bitstring);
 
 std::vector<std::tuple<int, int, int>> stab_x_bulk(int d);
 std::vector<std::tuple<int, int, int>> stab_z_bulk(int d);

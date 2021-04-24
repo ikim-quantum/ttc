@@ -44,6 +44,16 @@ int num2y(int n, int d)
   return n/d;
 }
 
+void print_surface(int dx, int dz, int bitstring)
+{
+  const int n = 4096;
+  const string str = std::bitset<n>(bitstring).to_string();
+  for (int i=0; i<dz; i++)
+    {
+      std::cout<<str.substr(str.size()-dx*dz+ dz*i, str.size()-dx*dz+dz*(i+1))<<endl;
+    }
+}
+
 std::vector<std::tuple<int, int, int>> stab_x_bulk(int d)
 {
   std::vector<std::tuple<int, int, int>> vec;

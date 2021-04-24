@@ -23,8 +23,7 @@ int main(int argc, char *argv[])
     {
       cout << "(x,y)=(" << std::get<0>(v) << ","<<std::get<1>(v) << ")"<< endl;
       int i = std::get<2>(v);
-      const string str = std::bitset<n>(i).to_string();
-      std::cout << str.substr(str.size()-d*d,str.size()) << endl;
+      print_surface(d, d, i);
       cout << endl;
     }
 
@@ -33,8 +32,7 @@ int main(int argc, char *argv[])
     {
       cout << "(x,y)=(" << std::get<0>(v) << ","<<std::get<1>(v) << ")"<< endl;
       int i = std::get<2>(v);
-      const string str = std::bitset<n>(i).to_string();
-      std::cout << str.substr(str.size()-d*d,str.size()) << endl;
+      print_surface(d, d, i);
       cout << endl;
     }
 
@@ -43,8 +41,7 @@ int main(int argc, char *argv[])
     {
       cout << "(x,y)=(" << std::get<0>(v) << ","<<std::get<1>(v) << ")"<< endl;
       int i = std::get<2>(v);
-      const string str = std::bitset<n>(i).to_string();
-      std::cout << str.substr(str.size()-d*d,str.size()) << endl;
+      print_surface(d, d, i);
       cout << endl;
     }
 
@@ -53,8 +50,7 @@ int main(int argc, char *argv[])
     {
       cout << "(x,y)=(" << std::get<0>(v) << ","<<std::get<1>(v) << ")"<< endl;
       int i = std::get<2>(v);
-      const string str = std::bitset<n>(i).to_string();
-      std::cout << str.substr(str.size()-d*d,str.size()) << endl;
+      print_surface(d, d, i);
       cout << endl;
     }
 
