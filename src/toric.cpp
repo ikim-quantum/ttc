@@ -65,160 +65,7 @@ void print_surface(int dx, int dz, int bitstring)
   cout << endl;
 }
 
-std::vector<std::tuple<int, int, int>> stab_x_bulk(int d)
-{
-  std::vector<std::tuple<int, int, int>> vec;
-  for (int x=0; x<d; x++)
-    {
-      for (int y=0; y<d; y++)
-	{
-	  if ((y%2==0) && (y+1<d))
-	    {
-	      if ((x%2==0) && (x+1<d))
-		{
-		  int n0 = coordinate2num(x,y,d);
-		  int n1 = coordinate2num(x+1,y,d);
-		  int n2 = coordinate2num(x,y+1,d);
-		  int n3 = coordinate2num(x+1,y+1,d);
-		  vec.push_back(std::make_tuple(x, y, (1<<n0) | (1<<n1) | (1<<n2) | (1<<n3)));
-		}
-	    }
-	  else if ((y%2==1) && (y+1<d))
-	    {
-	      if ((x%2==1) && (x+1<d))
-		{
-		  int n0 = coordinate2num(x,y,d);
-		  int n1 = coordinate2num(x+1,y,d);
-		  int n2 = coordinate2num(x,y+1,d);
-		  int n3 = coordinate2num(x+1,y+1,d);
-		  vec.push_back(std::make_tuple(x,y, (1<<n0) | (1<<n1) | (1<<n2) | (1<<n3)));
-		}
-	    }
-	}
-    }	    
-
-  return vec;
-}
-
-std::vector<std::tuple<int, int, int>> stab_z_bulk(int d)
-{
-  std::vector<std::tuple<int, int, int>> vec;
-  for (int x=0; x<d; x++)
-    {
-      for (int y=0; y<d; y++)
-	{
-	  if ((y%2==0) && (y+1<d))
-	    {
-	      if ((x%2==1) && (x+1<d))
-		{
-		  int n0 = coordinate2num(x,y,d);
-		  int n1 = coordinate2num(x+1,y,d);
-		  int n2 = coordinate2num(x,y+1,d);
-		  int n3 = coordinate2num(x+1,y+1,d);
-		  vec.push_back(std::make_tuple(x, y, (1<<n0) | (1<<n1) | (1<<n2) | (1<<n3)));
-		}
-	    }
-	  else if ((y%2==1) && (y+1<d))
-	    {
-	      if ((x%2==0) && (x+1<d))
-		{
-		  int n0 = coordinate2num(x,y,d);
-		  int n1 = coordinate2num(x+1,y,d);
-		  int n2 = coordinate2num(x,y+1,d);
-		  int n3 = coordinate2num(x+1,y+1,d);
-		  vec.push_back(std::make_tuple(x, y, (1<<n0) | (1<<n1) | (1<<n2) | (1<<n3)));
-		}
-	    }
-	}
-    }	    
-
-  return vec;
-}
-
-std::vector<std::tuple<int, int, int>> stab_x_bdy(int d)
-{
-  std::vector<std::tuple<int, int, int>> vec;
-
-  for (int y=0; y<d; y++)
-    {
-      if ((y%2==1) && ((y+1)<d))
-	{
-	  int n0 = coordinate2num(0,y,d);
-	  int n1 = coordinate2num(0,y+1,d);
-	  vec.push_back(std::make_tuple(-1, y, (1<<n0) | (1<<n1)));
-	}
-    }
-
-  if (d%2==0)
-    {
-      for (int y=0; y<d; y++)
-	{
-	  if ((y%2==1) && ((y+1)<d))
-	    {
-	      int n0 = coordinate2num(d-1,y,d);
-	      int n1 = coordinate2num(d-1,y+1,d);
-	      vec.push_back(std::make_tuple(d, y, (1<<n0) | (1<<n1)));
-	    }
-	}
-    }
-  else
-    {
-      for (int y=0; y<d; y++)
-	{
-	  if ((y%2==0) && ((y+1)<d))
-	    {
-	      int n0 = coordinate2num(d-1,y,d);
-	      int n1 = coordinate2num(d-1,y+1,d);
-	      vec.push_back(std::make_tuple(d, y, (1<<n0) | (1<<n1)));
-	    }
-	}
-    }
-  
-  return vec;
-}
-
-std::vector<std::tuple<int, int, int>> stab_z_bdy(int d)
-{
-  std::vector<std::tuple<int, int, int>> vec;
-  for (int x=0; x<d; x++)
-    {
-      if ((x%2==0) && ((x+1)<d))
-	{
-	  int n0 = coordinate2num(x,0,d);
-	  int n1 = coordinate2num(x+1,0,d);
-	  vec.push_back(std::make_tuple(x, -1, (1<<n0) | (1<<n1)));
-	}
-    }
-  
-  if (d%2==0)
-    {
-      for (int x=0; x<d; x++)
-	{
-	  if ((x%2==0) && ((x+1)<d))
-	    {
-	      int n0 = coordinate2num(x,d-1,d);
-	      int n1 = coordinate2num(x+1,d-1,d);
-	      vec.push_back(std::make_tuple(x, d, (1<<n0) | (1<<n1)));
-	    }
-	}
-    }
-  else
-    {
-      for (int x=0; x<d; x++)
-	{
-	  if ((x%2==1) && ((x+1)<d))
-	    {
-	      int n0 = coordinate2num(x,d-1,d);
-	      int n1 = coordinate2num(x+1,d-1,d);
-	      vec.push_back(std::make_tuple(x, d, (1<<n0) | (1<<n1)));
-	    }
-	}
-    }
-    
-  return vec;
-}
-
-std::vector<Stabilizer> stab_x_bulk_class(int d)
+std::vector<Stabilizer> stab_x_bulk(int d)
 {
   std::vector<Stabilizer> vec;
   for (int x=0; x<d; x++)
@@ -252,6 +99,125 @@ std::vector<Stabilizer> stab_x_bulk_class(int d)
 
   return vec;
 }
+
+std::vector<Stabilizer> stab_z_bulk(int d)
+{
+  std::vector<Stabilizer> vec;
+  for (int x=0; x<d; x++)
+    {
+      for (int y=0; y<d; y++)
+	{
+	  if ((y%2==0) && (y+1<d))
+	    {
+	      if ((x%2==1) && (x+1<d))
+		{
+		  int n0 = coordinate2num(x,y,d);
+		  int n1 = coordinate2num(x+1,y,d);
+		  int n2 = coordinate2num(x,y+1,d);
+		  int n3 = coordinate2num(x+1,y+1,d);
+		  vec.push_back(Stabilizer(x, y, (1<<n0) | (1<<n1) | (1<<n2) | (1<<n3)));
+		}
+	    }
+	  else if ((y%2==1) && (y+1<d))
+	    {
+	      if ((x%2==0) && (x+1<d))
+		{
+		  int n0 = coordinate2num(x,y,d);
+		  int n1 = coordinate2num(x+1,y,d);
+		  int n2 = coordinate2num(x,y+1,d);
+		  int n3 = coordinate2num(x+1,y+1,d);
+		  vec.push_back(Stabilizer(x, y, (1<<n0) | (1<<n1) | (1<<n2) | (1<<n3)));
+		}
+	    }
+	}
+    }	    
+
+  return vec;
+}
+
+std::vector<Stabilizer> stab_x_bdy(int d)
+{
+  std::vector<Stabilizer> vec;
+
+  for (int y=0; y<d; y++)
+    {
+      if ((y%2==1) && ((y+1)<d))
+	{
+	  int n0 = coordinate2num(0,y,d);
+	  int n1 = coordinate2num(0,y+1,d);
+	  vec.push_back(Stabilizer(-1, y, (1<<n0) | (1<<n1)));
+	}
+    }
+
+  if (d%2==0)
+    {
+      for (int y=0; y<d; y++)
+	{
+	  if ((y%2==1) && ((y+1)<d))
+	    {
+	      int n0 = coordinate2num(d-1,y,d);
+	      int n1 = coordinate2num(d-1,y+1,d);
+	      vec.push_back(Stabilizer(d, y, (1<<n0) | (1<<n1)));
+	    }
+	}
+    }
+  else
+    {
+      for (int y=0; y<d; y++)
+	{
+	  if ((y%2==0) && ((y+1)<d))
+	    {
+	      int n0 = coordinate2num(d-1,y,d);
+	      int n1 = coordinate2num(d-1,y+1,d);
+	      vec.push_back(Stabilizer(d, y, (1<<n0) | (1<<n1)));
+	    }
+	}
+    }
+  
+  return vec;
+}
+
+std::vector<Stabilizer> stab_z_bdy(int d)
+{
+  std::vector<Stabilizer> vec;
+  for (int x=0; x<d; x++)
+    {
+      if ((x%2==0) && ((x+1)<d))
+	{
+	  int n0 = coordinate2num(x,0,d);
+	  int n1 = coordinate2num(x+1,0,d);
+	  vec.push_back(Stabilizer(x, -1, (1<<n0) | (1<<n1)));
+	}
+    }
+  
+  if (d%2==0)
+    {
+      for (int x=0; x<d; x++)
+	{
+	  if ((x%2==0) && ((x+1)<d))
+	    {
+	      int n0 = coordinate2num(x,d-1,d);
+	      int n1 = coordinate2num(x+1,d-1,d);
+	      vec.push_back(Stabilizer(x, d, (1<<n0) | (1<<n1)));
+	    }
+	}
+    }
+  else
+    {
+      for (int x=0; x<d; x++)
+	{
+	  if ((x%2==1) && ((x+1)<d))
+	    {
+	      int n0 = coordinate2num(x,d-1,d);
+	      int n1 = coordinate2num(x+1,d-1,d);
+	      vec.push_back(Stabilizer(x, d, (1<<n0) | (1<<n1)));
+	    }
+	}
+    }
+    
+  return vec;
+}
+
 
 int logical_x(int d)
 {

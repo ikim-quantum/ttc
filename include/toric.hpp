@@ -8,12 +8,10 @@ int num2x(int n, int d);
 int num2y(int n, int d);
 void print_surface(int dx, int dz, int bitstring);
 
-std::vector<std::tuple<int, int, int>> stab_x_bulk(int d);
-std::vector<std::tuple<int, int, int>> stab_z_bulk(int d);
-std::vector<std::tuple<int, int, int>> stab_x_bdy(int d);
-std::vector<std::tuple<int, int, int>> stab_z_bdy(int d);
-
-std::vector<Stabilizer> stab_x_bulk_class(int d);
+std::vector<Stabilizer> stab_x_bulk(int d);
+std::vector<Stabilizer> stab_z_bulk(int d);
+std::vector<Stabilizer> stab_x_bdy(int d);
+std::vector<Stabilizer> stab_z_bdy(int d);
 
 int logical_x(int d);
 int logical_z(int d);

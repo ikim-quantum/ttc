@@ -31,9 +31,11 @@
    - [X] print_surface fix
    - [X] Check that the coordinates are correct
    - [X] Non-uniform case
-* [0/2] Stabilizer class
-  - [ ] Create a class
-  - [ ] fix up everything else
+* [3/3] Stabilizer class
+  - [X] Create a class
+  - [X] Make the class version of the stabilizer generations for uniform case.
+  - [X] Test
+  - [ ] Non-uniform case
 * [0/6] MWPM: X
     - [ ] distance
     - [ ] Generate all real nodes
