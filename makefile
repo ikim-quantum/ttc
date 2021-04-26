@@ -29,5 +29,8 @@ floquet.o: pauli_product.o toric.o ./src/floquet.cpp
 toric.o: ./src/toric.cpp
 	$(CXX) -c $(CPPFLAGS) ./src/toric.cpp
 
+stabilizer.o: ./src/stabilizer.cpp
+	$(CXX) -c $(CPPFLAGS) ./src/stabilizer.cpp
+
 clean:
 	$(RM) *.o test_* exp_*

@@ -7,6 +7,6 @@ public:
   int y;
   int bitrep;
   Stabilizer(int xx, int yy, int bb);
-}
+};
 
 #endif // STABILIZER_HPP_
