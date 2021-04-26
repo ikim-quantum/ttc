@@ -11,45 +11,48 @@ int main(int argc, char *argv[])
   int dx=atoi(argv[1]);
   int dz=atoi(argv[2]);
   const int n = 4096;
+
+  std::vector<std::tuple<int, int, int>> xchecks_bulk = stab_x_bulk_nu(dx, dz);
+  std::vector<std::tuple<int, int, int>> zchecks_bulk = stab_z_bulk_nu(dx, dz);
+
+  std::vector<std::tuple<int, int, int>> xchecks_bdy = stab_x_bdy_nu(dx, dz);
+  std::vector<std::tuple<int, int, int>> zchecks_bdy = stab_z_bdy_nu(dx, dz);
   
-  std::vector<int> xchecks_bulk = stab_x_bulk_nu(dx, dz);
-  std::vector<int> zchecks_bulk = stab_z_bulk_nu(dx, dz);
-
-  std::vector<int> xchecks_bdy = stab_x_bdy_nu(dx, dz);
-  std::vector<int> zchecks_bdy = stab_z_bdy_nu(dx, dz);
-  
-  cout << "X-checks (bulk): " << endl;
-  for (auto i = xchecks_bulk.begin(); i != xchecks_bulk.end(); ++i)
+  cout << "X-checks (bulk) " << endl;
+  for (auto v: xchecks_bulk)
     {
-      const string str = std::bitset<n>(*i).to_string();
-      std::cout << str.substr(str.size()-dx*dz,str.size()) << ' ';
+      cout << "(x,y)=(" << std::get<0>(v) << ","<<std::get<1>(v) << ")"<< endl;
+      int i = std::get<2>(v);
+      print_surface(dx, dz, i);
+      cout << endl;
     }
-  cout << endl;
 
-  cout << "Z-checks (bulk): " << endl;
-  for (auto i = zchecks_bulk.begin(); i != zchecks_bulk.end(); ++i)
+  cout << "Z-checks (bulk) " << endl;
+  for (auto v: zchecks_bulk)
     {
-      const string str = std::bitset<n>(*i).to_string();
-      std::cout << str.substr(str.size()-dx*dz,str.size()) << ' ';
+      cout << "(x,y)=(" << std::get<0>(v) << ","<<std::get<1>(v) << ")"<< endl;
+      int i = std::get<2>(v);
+      print_surface(dx, dz, i);
+      cout << endl;
     }
-  cout << endl<<endl;
 
-  
-  cout << "X-checks (boundary): " << endl;
-  for (auto i = xchecks_bdy.begin(); i != xchecks_bdy.end(); ++i)
+  cout << "X-checks (boundary) " << endl;
+  for (auto v: xchecks_bdy)
     {
-      const string str = std::bitset<n>(*i).to_string();
-      std::cout << str.substr(str.size()-dx*dz,str.size()) << ' ';
+      cout << "(x,y)=(" << std::get<0>(v) << ","<<std::get<1>(v) << ")"<< endl;
+      int i = std::get<2>(v);
+      print_surface(dx, dz, i);
+      cout << endl;
     }
-  cout << endl;
 
-  cout << "Z-checks (boundary): " << endl;
-  for (auto i = zchecks_bdy.begin(); i != zchecks_bdy.end(); ++i)
+  cout << "Z-checks (boundary) " << endl;
+  for (auto v: zchecks_bdy)
     {
-      const string str = std::bitset<n>(*i).to_string();
-      std::cout << str.substr(str.size()-dx*dz,str.size()) << ' ';
+      cout << "(x,y)=(" << std::get<0>(v) << ","<<std::get<1>(v) << ")"<< endl;
+      int i = std::get<2>(v);
+      print_surface(dx, dz, i);
+      cout << endl;
     }
-  cout << endl<<endl;
 
   cout <<"Logical X:" << endl;
   {
