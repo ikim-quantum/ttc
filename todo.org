@@ -26,10 +26,10 @@
   - [X] Test
 * [1/1] MWPM: Setup
   - [X] Conversion of input bits to syndrome information
-* [1/4] Toric code update
+* [3/4] Toric code update
    - [X] Add the stabilizer vec that includes the x and y coordinates
-   - [ ] print_surface fix
-   - [ ] Check that the coordinates are correct
+   - [X] print_surface fix
+   - [X] Check that the coordinates are correct
    - [ ] Non-uniform case
 * [0/6] MWPM: X
     - [ ] Generate all real nodes

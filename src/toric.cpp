@@ -48,10 +48,20 @@ void print_surface(int dx, int dz, int bitstring)
 {
   const int n = 4096;
   const string str = std::bitset<n>(bitstring).to_string();
-  for (int i=0; i<dz; i++)
+  cout << "Bit string:";
+  std::cout << str.substr(str.size()-dx*dz,str.size()) << endl;
+
+  cout << "Square grid format:"<< endl;
+  for (int y=0; y<dz; y++)
     {
-      std::cout<<str.substr(str.size()-dx*dz+ dz*i, str.size()-dx*dz+dz*(i+1))<<endl;
+      for (int x=0; x<dx; x++)
+	{
+	  int k = coordinate2num_nu(x, y, dx, dz);
+	  cout << ((bitstring & (1 << k)) >> k);
+	}
+      cout << endl;
     }
+  cout << endl;
 }
 
 std::vector<std::tuple<int, int, int>> stab_x_bulk(int d)
@@ -134,7 +144,7 @@ std::vector<std::tuple<int, int, int>> stab_x_bdy(int d)
 	{
 	  int n0 = coordinate2num(0,y,d);
 	  int n1 = coordinate2num(0,y+1,d);
-	  vec.push_back(std::make_tuple(0, y, (1<<n0) | (1<<n1)));
+	  vec.push_back(std::make_tuple(-1, y, (1<<n0) | (1<<n1)));
 	}
     }
 
@@ -146,7 +156,7 @@ std::vector<std::tuple<int, int, int>> stab_x_bdy(int d)
 	    {
 	      int n0 = coordinate2num(d-1,y,d);
 	      int n1 = coordinate2num(d-1,y+1,d);
-	      vec.push_back(std::make_tuple(d-1, y, (1<<n0) | (1<<n1)));
+	      vec.push_back(std::make_tuple(d, y, (1<<n0) | (1<<n1)));
 	    }
 	}
     }
@@ -158,7 +168,7 @@ std::vector<std::tuple<int, int, int>> stab_x_bdy(int d)
 	    {
 	      int n0 = coordinate2num(d-1,y,d);
 	      int n1 = coordinate2num(d-1,y+1,d);
-	      vec.push_back(std::make_tuple(d-1, y, (1<<n0) | (1<<n1)));
+	      vec.push_back(std::make_tuple(d, y, (1<<n0) | (1<<n1)));
 	    }
 	}
     }
@@ -175,7 +185,7 @@ std::vector<std::tuple<int, int, int>> stab_z_bdy(int d)
 	{
 	  int n0 = coordinate2num(x,0,d);
 	  int n1 = coordinate2num(x+1,0,d);
-	  vec.push_back(std::make_tuple(x, 0, (1<<n0) | (1<<n1)));
+	  vec.push_back(std::make_tuple(x, -1, (1<<n0) | (1<<n1)));
 	}
     }
   
@@ -187,7 +197,7 @@ std::vector<std::tuple<int, int, int>> stab_z_bdy(int d)
 	    {
 	      int n0 = coordinate2num(x,d-1,d);
 	      int n1 = coordinate2num(x+1,d-1,d);
-	      vec.push_back(std::make_tuple(x, d-1, (1<<n0) | (1<<n1)));
+	      vec.push_back(std::make_tuple(x, d, (1<<n0) | (1<<n1)));
 	    }
 	}
     }
@@ -199,7 +209,7 @@ std::vector<std::tuple<int, int, int>> stab_z_bdy(int d)
 	    {
 	      int n0 = coordinate2num(x,d-1,d);
 	      int n1 = coordinate2num(x+1,d-1,d);
-	      vec.push_back(std::make_tuple(x, d-1, (1<<n0) | (1<<n1)));
+	      vec.push_back(std::make_tuple(x, d, (1<<n0) | (1<<n1)));
 	    }
 	}
     }
