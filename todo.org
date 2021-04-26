@@ -31,7 +31,11 @@
    - [X] print_surface fix
    - [X] Check that the coordinates are correct
    - [X] Non-uniform case
+* [0/2] Stabilizer class
+  - [ ] Create a class
+  - [ ] fix up everything else
 * [0/6] MWPM: X
+    - [ ] distance
     - [ ] Generate all real nodes
     - [ ] Generate all virtual nodes
     - [ ] Generate all edges
