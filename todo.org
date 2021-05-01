@@ -31,20 +31,14 @@
    - [X] print_surface fix
    - [X] Check that the coordinates are correct
    - [X] Non-uniform case
-* [3/3] Stabilizer class
+* [4/4] Stabilizer class
   - [X] Create a class
   - [X] Make the class version of the stabilizer generations for uniform case.
   - [X] Test
-  - [ ] Non-uniform case
-* [0/6] MWPM: X
-    - [ ] distance
-    - [ ] Generate all real nodes
-    - [ ] Generate all virtual nodes
-    - [ ] Generate all edges
-    - [ ] node_a
-    - [ ] node_b
-    - [ ] weights for each edge
-* [0/6] MWPM: Z
+  - [X] Non-uniform case
+* [1/7] MWPM: X
+    - [X] distance
+    - [ ] Shortest path 
     - [ ] Generate all real nodes
     - [ ] Generate all virtual nodes
     - [ ] Generate all edges

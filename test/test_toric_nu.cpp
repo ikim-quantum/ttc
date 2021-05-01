@@ -1,4 +1,5 @@
 #include "../include/toric.hpp"
+#include "../include/stabilizer.hpp"
 #include <iostream>
 #include <vector>
 
@@ -12,44 +13,44 @@ int main(int argc, char *argv[])
   int dz=atoi(argv[2]);
   const int n = 4096;
 
-  std::vector<std::tuple<int, int, int>> xchecks_bulk = stab_x_bulk_nu(dx, dz);
-  std::vector<std::tuple<int, int, int>> zchecks_bulk = stab_z_bulk_nu(dx, dz);
+  std::vector<Stabilizer> xchecks_bulk = stab_x_bulk_nu(dx, dz);
+  std::vector<Stabilizer> zchecks_bulk = stab_z_bulk_nu(dx, dz);
 
-  std::vector<std::tuple<int, int, int>> xchecks_bdy = stab_x_bdy_nu(dx, dz);
-  std::vector<std::tuple<int, int, int>> zchecks_bdy = stab_z_bdy_nu(dx, dz);
+  std::vector<Stabilizer> xchecks_bdy = stab_x_bdy_nu(dx, dz);
+  std::vector<Stabilizer> zchecks_bdy = stab_z_bdy_nu(dx, dz);
   
   cout << "X-checks (bulk) " << endl;
-  for (auto v: xchecks_bulk)
+  for (auto s: xchecks_bulk)
     {
-      cout << "(x,y)=(" << std::get<0>(v) << ","<<std::get<1>(v) << ")"<< endl;
-      int i = std::get<2>(v);
+      cout << "(x,y)=(" << s.x << ","<<s.y << ")"<< endl;
+      int i = s.bitrep;
       print_surface(dx, dz, i);
       cout << endl;
     }
 
   cout << "Z-checks (bulk) " << endl;
-  for (auto v: zchecks_bulk)
+  for (auto s: zchecks_bulk)
     {
-      cout << "(x,y)=(" << std::get<0>(v) << ","<<std::get<1>(v) << ")"<< endl;
-      int i = std::get<2>(v);
+      cout << "(x,y)=(" << s.x << ","<<s.y << ")"<< endl;
+      int i = s.bitrep;
       print_surface(dx, dz, i);
       cout << endl;
     }
 
   cout << "X-checks (boundary) " << endl;
-  for (auto v: xchecks_bdy)
+  for (auto s: xchecks_bdy)
     {
-      cout << "(x,y)=(" << std::get<0>(v) << ","<<std::get<1>(v) << ")"<< endl;
-      int i = std::get<2>(v);
+      cout << "(x,y)=(" << s.x << ","<<s.y << ")"<< endl;
+      int i = s.bitrep;
       print_surface(dx, dz, i);
       cout << endl;
     }
 
   cout << "Z-checks (boundary) " << endl;
-  for (auto v: zchecks_bdy)
+  for (auto s: zchecks_bdy)
     {
-      cout << "(x,y)=(" << std::get<0>(v) << ","<<std::get<1>(v) << ")"<< endl;
-      int i = std::get<2>(v);
+      cout << "(x,y)=(" << s.x << ","<<s.y << ")"<< endl;
+      int i = s.bitrep;
       print_surface(dx, dz, i);
       cout << endl;
     }

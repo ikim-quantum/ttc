@@ -1,6 +1,7 @@
 #include "../include/floquet.hpp"
 #include "../include/pauli_product.hpp"
 #include "../include/toric.hpp"
+#include "../include/stabilizer.hpp"
 #include <armadillo>
 #include <cmath>
 #include <stdlib.h>
@@ -11,31 +12,31 @@ using namespace arma;
 
 void tc_stab_x(double theta, int dx, int dz, cx_dvec &psi)
 {
-  std::vector<std::tuple<int, int, int>> xchecks_bulk = stab_x_bulk_nu(dx, dz);
-  std::vector<std::tuple<int, int, int>> xchecks_bdy = stab_x_bdy_nu(dx, dz);
+  std::vector<Stabilizer> xchecks_bulk = stab_x_bulk_nu(dx, dz);
+  std::vector<Stabilizer> xchecks_bdy = stab_x_bdy_nu(dx, dz);
 
-  for (auto v: xchecks_bulk)
+  for (auto s: xchecks_bulk)
     {
-      apply_ppr(std::get<2>(v), 0, theta, psi);
+      apply_ppr(s.bitrep, 0, theta, psi);
     }
-  for (auto v: xchecks_bdy)
+  for (auto s: xchecks_bdy)
     {
-      apply_ppr(std::get<2>(v), 0, theta, psi);
+      apply_ppr(s.bitrep, 0, theta, psi);
     }
 }
 
 void tc_stab_z(double theta, int dx, int dz, cx_dvec &psi)
 {
-  std::vector<std::tuple<int, int, int>> zchecks_bulk = stab_z_bulk_nu(dx, dz);
-  std::vector<std::tuple<int, int, int>> zchecks_bdy = stab_z_bdy_nu(dx, dz);
+  std::vector<Stabilizer> zchecks_bulk = stab_z_bulk_nu(dx, dz);
+  std::vector<Stabilizer> zchecks_bdy = stab_z_bdy_nu(dx, dz);
 
-  for (auto v: zchecks_bulk)
+  for (auto s: zchecks_bulk)
     {
-      apply_ppr(0, std::get<2>(v), theta, psi);
+      apply_ppr(0, s.bitrep, theta, psi);
     }
-  for (auto v: zchecks_bdy)
+  for (auto s: zchecks_bdy)
     {
-      apply_ppr(0, std::get<2>(v), theta, psi);
+      apply_ppr(0, s.bitrep, theta, psi);
     }
 }
 

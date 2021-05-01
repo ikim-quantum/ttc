@@ -257,9 +257,9 @@ int num2y_nu(int n, int dx, int dz)
   return n/dx;
 }
 
-std::vector<std::tuple<int, int, int>> stab_x_bulk_nu(int dx, int dz)
+std::vector<Stabilizer> stab_x_bulk_nu(int dx, int dz)
 { 
-  std::vector<std::tuple<int, int, int>> vec;
+  std::vector<Stabilizer> vec;
   for (int x=0; x<dx; x++)
     {
       for (int y=0; y<dz; y++)
@@ -272,7 +272,7 @@ std::vector<std::tuple<int, int, int>> stab_x_bulk_nu(int dx, int dz)
 		  int n1 = coordinate2num_nu(x+1,y,dx, dz);
 		  int n2 = coordinate2num_nu(x,y+1,dx, dz);
 		  int n3 = coordinate2num_nu(x+1,y+1,dx, dz);
-		  vec.push_back(std::make_tuple(x, y,(1<<n0) | (1<<n1) | (1<<n2) | (1<<n3)));
+		  vec.push_back(Stabilizer(x, y,(1<<n0) | (1<<n1) | (1<<n2) | (1<<n3)));
 		}
 	    }
 	  else if ((y%2==1) && (y+1<dz))
@@ -283,7 +283,7 @@ std::vector<std::tuple<int, int, int>> stab_x_bulk_nu(int dx, int dz)
 		  int n1 = coordinate2num_nu(x+1,y,dx, dz);
 		  int n2 = coordinate2num_nu(x,y+1,dx, dz);
 		  int n3 = coordinate2num_nu(x+1,y+1,dx, dz);
-		  vec.push_back(std::make_tuple(x, y,(1<<n0) | (1<<n1) | (1<<n2) | (1<<n3)));
+		  vec.push_back(Stabilizer(x, y,(1<<n0) | (1<<n1) | (1<<n2) | (1<<n3)));
 		}
 	    }
 	}
@@ -292,9 +292,9 @@ std::vector<std::tuple<int, int, int>> stab_x_bulk_nu(int dx, int dz)
   return vec;
 }
 
-std::vector<std::tuple<int, int, int>> stab_z_bulk_nu(int dx, int dz)
+std::vector<Stabilizer> stab_z_bulk_nu(int dx, int dz)
 {
-  std::vector<std::tuple<int, int, int>> vec;
+  std::vector<Stabilizer> vec;
   for (int x=0; x<dx; x++)
     {
       for (int y=0; y<dz; y++)
@@ -307,7 +307,7 @@ std::vector<std::tuple<int, int, int>> stab_z_bulk_nu(int dx, int dz)
 		  int n1 = coordinate2num_nu(x+1,y,dx, dz);
 		  int n2 = coordinate2num_nu(x,y+1,dx, dz);
 		  int n3 = coordinate2num_nu(x+1,y+1,dx, dz);
-		  vec.push_back(std::make_tuple(x, y,(1<<n0) | (1<<n1) | (1<<n2) | (1<<n3)));
+		  vec.push_back(Stabilizer(x, y,(1<<n0) | (1<<n1) | (1<<n2) | (1<<n3)));
 		}
 	    }
 	  else if ((y%2==1) && (y+1<dz))
@@ -318,7 +318,7 @@ std::vector<std::tuple<int, int, int>> stab_z_bulk_nu(int dx, int dz)
 		  int n1 = coordinate2num_nu(x+1,y,dx, dz);
 		  int n2 = coordinate2num_nu(x,y+1,dx, dz);
 		  int n3 = coordinate2num_nu(x+1,y+1,dx, dz);
-		  vec.push_back(std::make_tuple(x, y,(1<<n0) | (1<<n1) | (1<<n2) | (1<<n3)));
+		  vec.push_back(Stabilizer(x, y,(1<<n0) | (1<<n1) | (1<<n2) | (1<<n3)));
 		}
 	    }
 	}
@@ -327,9 +327,9 @@ std::vector<std::tuple<int, int, int>> stab_z_bulk_nu(int dx, int dz)
   return vec;
 }
 
-std::vector<std::tuple<int, int, int>> stab_x_bdy_nu(int dx, int dz)
+std::vector<Stabilizer> stab_x_bdy_nu(int dx, int dz)
 {
-  std::vector<std::tuple<int, int, int>> vec;
+  std::vector<Stabilizer> vec;
 
   for (int y=0; y<dz; y++)
     {
@@ -337,7 +337,7 @@ std::vector<std::tuple<int, int, int>> stab_x_bdy_nu(int dx, int dz)
 	{
 	  int n0 = coordinate2num_nu(0,y,dx, dz);
 	  int n1 = coordinate2num_nu(0,y+1,dx, dz);
-	  vec.push_back(std::make_tuple(-1, y, (1<<n0) | (1<<n1)));
+	  vec.push_back(Stabilizer(-1, y, (1<<n0) | (1<<n1)));
 	}
     }
 
@@ -349,7 +349,7 @@ std::vector<std::tuple<int, int, int>> stab_x_bdy_nu(int dx, int dz)
 	    {
 	      int n0 = coordinate2num_nu(dx-1,y,dx, dz);
 	      int n1 = coordinate2num_nu(dx-1,y+1,dx, dz);
-	      vec.push_back(std::make_tuple(dx, y, (1<<n0) | (1<<n1)));
+	      vec.push_back(Stabilizer(dx, y, (1<<n0) | (1<<n1)));
 	    }
 	}
     }
@@ -361,23 +361,23 @@ std::vector<std::tuple<int, int, int>> stab_x_bdy_nu(int dx, int dz)
 	    {
 	      int n0 = coordinate2num_nu(dx-1,y,dx, dz);
 	      int n1 = coordinate2num_nu(dx-1,y+1,dx, dz);
-	      vec.push_back(std::make_tuple(dx, y, (1<<n0) | (1<<n1)));
+	      vec.push_back(Stabilizer(dx, y, (1<<n0) | (1<<n1)));
 	    }
 	}
     }
   
   return vec;
 }
-std::vector<std::tuple<int, int, int>> stab_z_bdy_nu(int dx, int dz)
+std::vector<Stabilizer> stab_z_bdy_nu(int dx, int dz)
 {
-  std::vector<std::tuple<int, int, int>> vec;
+  std::vector<Stabilizer> vec;
   for (int x=0; x<dx; x++)
     {
       if ((x%2==0) && ((x+1)<dx))
 	{
 	  int n0 = coordinate2num_nu(x,0,dx, dz);
 	  int n1 = coordinate2num_nu(x+1,0,dx, dz);
-	  vec.push_back(std::make_tuple(x, -1, (1<<n0) | (1<<n1)));
+	  vec.push_back(Stabilizer(x, -1, (1<<n0) | (1<<n1)));
 	}
     }
   
@@ -389,7 +389,7 @@ std::vector<std::tuple<int, int, int>> stab_z_bdy_nu(int dx, int dz)
 	    {
 	      int n0 = coordinate2num_nu(x,dz-1,dx, dz);
 	      int n1 = coordinate2num_nu(x+1,dz-1,dx, dz);
-	      vec.push_back(std::make_tuple(x, dz, (1<<n0) | (1<<n1)));
+	      vec.push_back(Stabilizer(x, dz, (1<<n0) | (1<<n1)));
 	    }
 	}
     }
@@ -401,7 +401,7 @@ std::vector<std::tuple<int, int, int>> stab_z_bdy_nu(int dx, int dz)
 	    {
 	      int n0 = coordinate2num_nu(x,dz-1,dx, dz);
 	      int n1 = coordinate2num_nu(x+1,dz-1,dx, dz);
-	      vec.push_back(std::make_tuple(x, dz, (1<<n0) | (1<<n1)));
+	      vec.push_back(Stabilizer(x, dz, (1<<n0) | (1<<n1)));
 	    }
 	}
     }
@@ -435,16 +435,16 @@ int logical_z_nu(int dx, int dz)
 std::vector<bool> measure_stab_x(int dx, int dz, int xstring)
 {
   std::vector<bool> syndromes_x; 
-  std::vector<std::tuple<int, int, int>> xchecks_bulk = stab_x_bulk_nu(dx, dz);
-  std::vector<std::tuple<int, int, int>> xchecks_bdy = stab_x_bdy_nu(dx, dz);
+  std::vector<Stabilizer> xchecks_bulk = stab_x_bulk_nu(dx, dz);
+  std::vector<Stabilizer> xchecks_bdy = stab_x_bdy_nu(dx, dz);
 
   for (auto v: xchecks_bulk)
     {
-      syndromes_x.push_back(__builtin_popcount(xstring&std::get<2>(v))%2);
+      syndromes_x.push_back(__builtin_popcount(xstring&v.bitrep)%2);
     }
   for (auto v: xchecks_bdy)
     {
-      syndromes_x.push_back(__builtin_popcount(xstring&std::get<2>(v))%2);
+      syndromes_x.push_back(__builtin_popcount(xstring&v.bitrep)%2);
     }
   return syndromes_x;
 }
@@ -452,16 +452,32 @@ std::vector<bool> measure_stab_x(int dx, int dz, int xstring)
 std::vector<bool> measure_stab_z(int dx, int dz, int zstring)
 {
   std::vector<bool> syndromes_z; 
-  std::vector<std::tuple<int, int, int>> zchecks_bulk = stab_z_bulk_nu(dx, dz);
-  std::vector<std::tuple<int, int, int>> zchecks_bdy = stab_z_bdy_nu(dx, dz);
+  std::vector<Stabilizer> zchecks_bulk = stab_z_bulk_nu(dx, dz);
+  std::vector<Stabilizer> zchecks_bdy = stab_z_bdy_nu(dx, dz);
 
   for (auto v: zchecks_bulk)
     {
-      syndromes_z.push_back(__builtin_popcount(zstring&std::get<2>(v))%2);
+      syndromes_z.push_back(__builtin_popcount(zstring&v.bitrep)%2);
     }
   for (auto v: zchecks_bdy)
     {
-      syndromes_z.push_back(__builtin_popcount(zstring&std::get<2>(v))%2);
+      syndromes_z.push_back(__builtin_popcount(zstring&v.bitrep)%2);
     }
   return syndromes_z;
+}
+
+int distance(Stabilizer s1, Stabilizer s2)
+{
+  int a, b;
+
+  a = s1.x - s2.x;
+  b = s1.y - s2.y;
+
+  //
+  if ((a+b)%2!=0)
+    {
+      cout << "Warning: You are probably using stabilizer checks of different types." << endl;
+    }
+  
+  return abs((a+b)/2) + abs((a-b)/2);
 }

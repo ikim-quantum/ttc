@@ -19,37 +19,37 @@ int main(int argc, char *argv[])
   std::vector<Stabilizer> zchecks_bdy = stab_z_bdy(d);
   
   cout << "X-checks (bulk) " << endl;
-  for (auto v: xchecks_bulk)
+  for (auto s: xchecks_bulk)
     {
-      cout << "(x,y)=(" << v.x << ","<< v.y << ")"<< endl;
-      int i = v.bitrep;
+      cout << "(x,y)=(" << s.x << ","<< s.y << ")"<< endl;
+      int i = s.bitrep;
       print_surface(d, d, i);
       cout << endl;
     }
 
   cout << "Z-checks (bulk) " << endl;
-  for (auto v: zchecks_bulk)
+  for (auto s: zchecks_bulk)
     {
-      cout << "(x,y)=(" << v.x << ","<<v.y << ")"<< endl;
-      int i = v.bitrep;
+      cout << "(x,y)=(" << s.x << ","<<s.y << ")"<< endl;
+      int i = s.bitrep;
       print_surface(d, d, i);
       cout << endl;
     }
 
   cout << "X-checks (boundary) " << endl;
-  for (auto v: xchecks_bdy)
+  for (auto s: xchecks_bdy)
     {
-      cout << "(x,y)=(" << v.x << ","<<v.y << ")"<< endl;
-      int i = v.bitrep;
+      cout << "(x,y)=(" << s.x << ","<<s.y << ")"<< endl;
+      int i = s.bitrep;
       print_surface(d, d, i);
       cout << endl;
     }
 
   cout << "Z-checks (boundary) " << endl;
-  for (auto v: zchecks_bdy)
+  for (auto s: zchecks_bdy)
     {
-      cout << "(x,y)=(" << v.x << ","<<v.y << ")"<< endl;
-      int i = v.bitrep;
+      cout << "(x,y)=(" << s.x << ","<<s.y << ")"<< endl;
+      int i = s.bitrep;
       print_surface(d, d, i);
       cout << endl;
     }
