@@ -12,14 +12,9 @@ using namespace arma;
 
 void tc_stab_x(double theta, int dx, int dz, cx_dvec &psi)
 {
-  std::vector<Stabilizer> xchecks_bulk = stab_x_bulk(dx, dz);
-  std::vector<Stabilizer> xchecks_bdy = stab_x_bdy(dx, dz);
+  Stabilizers checks = xchecks(dx, dz);
 
-  for (auto s: xchecks_bulk)
-    {
-      apply_ppr(s.bitrep, 0, theta, psi);
-    }
-  for (auto s: xchecks_bdy)
+  for (auto s: checks)
     {
       apply_ppr(s.bitrep, 0, theta, psi);
     }
@@ -27,14 +22,9 @@ void tc_stab_x(double theta, int dx, int dz, cx_dvec &psi)
 
 void tc_stab_z(double theta, int dx, int dz, cx_dvec &psi)
 {
-  std::vector<Stabilizer> zchecks_bulk = stab_z_bulk(dx, dz);
-  std::vector<Stabilizer> zchecks_bdy = stab_z_bdy(dx, dz);
+  Stabilizers checks = zchecks(dx, dz);
 
-  for (auto s: zchecks_bulk)
-    {
-      apply_ppr(0, s.bitrep, theta, psi);
-    }
-  for (auto s: zchecks_bdy)
+  for (auto s: checks)
     {
       apply_ppr(0, s.bitrep, theta, psi);
     }
