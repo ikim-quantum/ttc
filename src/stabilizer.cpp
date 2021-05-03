@@ -9,4 +9,5 @@ Stabilizer::Stabilizer(int xx, int yy, int bb)
   x = xx;
   y = yy;
   bitrep = bb;
+  
 }

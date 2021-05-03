@@ -409,6 +409,24 @@ std::vector<Stabilizer> stab_z_bdy_nu(int dx, int dz)
   return vec;
 }
 
+std::vector<Stabilizer> xchecks(int dx, int dz)
+{
+  std::vector<Stabilizer> bulk = stab_x_bulk_nu(dx, dz);
+  std::vector<Stabilizer> bdy = stab_x_bdy_nu(dx, dz);
+
+  bulk.insert(bulk.end(), bdy.begin(), bdy.end());
+  return bulk;
+}
+
+std::vector<Stabilizer> zchecks(int dx, int dz)
+{
+  std::vector<Stabilizer> bulk = stab_z_bulk_nu(dx, dz);
+  std::vector<Stabilizer> bdy = stab_z_bdy_nu(dx, dz);
+
+  bulk.insert(bulk.end(), bdy.begin(), bdy.end());
+  return bulk;
+}
+
 int logical_x_nu(int dx, int dz)
 {
   int out =0;
@@ -432,38 +450,26 @@ int logical_z_nu(int dx, int dz)
 // Convention is the bulk stabilizers first and then the boundary
 // stabilizers.
 
-std::vector<bool> measure_stab_x(int dx, int dz, int xstring)
+std::vector<Stabilizer> measure_stab_x(int dx, int dz, int xstring)
 {
-  std::vector<bool> syndromes_x; 
-  std::vector<Stabilizer> xchecks_bulk = stab_x_bulk_nu(dx, dz);
-  std::vector<Stabilizer> xchecks_bdy = stab_x_bdy_nu(dx, dz);
+  std::vector<Stabilizer> checks = xchecks(dx, dz);
 
-  for (auto v: xchecks_bulk)
+  for (auto v: checks)
     {
-      syndromes_x.push_back(__builtin_popcount(xstring&v.bitrep)%2);
+      v.parity = __builtin_popcount(xstring&v.bitrep)%2;
     }
-  for (auto v: xchecks_bdy)
-    {
-      syndromes_x.push_back(__builtin_popcount(xstring&v.bitrep)%2);
-    }
-  return syndromes_x;
+  return checks;
 }
 
-std::vector<bool> measure_stab_z(int dx, int dz, int zstring)
+std::vector<Stabilizer> measure_stab_z(int dx, int dz, int zstring)
 {
-  std::vector<bool> syndromes_z; 
-  std::vector<Stabilizer> zchecks_bulk = stab_z_bulk_nu(dx, dz);
-  std::vector<Stabilizer> zchecks_bdy = stab_z_bdy_nu(dx, dz);
+  std::vector<Stabilizer> checks = zchecks(dx, dz);
 
-  for (auto v: zchecks_bulk)
+  for (auto v: checks)
     {
-      syndromes_z.push_back(__builtin_popcount(zstring&v.bitrep)%2);
+      v.parity = __builtin_popcount(zstring&v.bitrep)%2;
     }
-  for (auto v: zchecks_bdy)
-    {
-      syndromes_z.push_back(__builtin_popcount(zstring&v.bitrep)%2);
-    }
-  return syndromes_z;
+  return checks;
 }
 
 int distance(Stabilizer s1, Stabilizer s2)
