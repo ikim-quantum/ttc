@@ -75,18 +75,20 @@ int main(int argc, char *argv[])
   const string mystring_str = std::bitset<n>(mystring).to_string();
   std::cout<<"Mystring="<<mystring_str.substr(mystring_str.size() - dx*dz, mystring_str.size())<<endl;
   
-  std::vector<bool> syndromes_x = measure_stab_x(dx, dz, mystring);
+  std::vector<Stabilizer> syndromes_x = measure_stab_x(dx, dz, mystring);
   cout << "X-checks (bulk): " << endl;
-  for (bool s: syndromes_x)
+  for (auto s: syndromes_x)
     {
-      std::cout << s << endl;
+      std::cout << "Location=(" << s.x <<","<<s.y <<")"<< endl;
+      std::cout << s.parity << endl;
     }
 
-  std::vector<bool> syndromes_z = measure_stab_z(dx, dz, mystring);
+  std::vector<Stabilizer> syndromes_z = measure_stab_z(dx, dz, mystring);
   cout << "Z-checks (bulk): " << endl;
-  for (bool s: syndromes_z)
+  for (auto s: syndromes_z)
     {
-      std::cout << s << endl;
+      std::cout << "Location=(" << s.x <<","<<s.y <<")"<< endl;
+      std::cout << s.parity << endl;
     }
   
 }

@@ -65,9 +65,9 @@ void print_surface(int dx, int dz, int bitstring)
   cout << endl;
 }
 
-std::vector<Stabilizer> stab_x_bulk(int d)
+Stabilizers stab_x_bulk(int d)
 {
-  std::vector<Stabilizer> vec;
+  Stabilizers vec;
   for (int x=0; x<d; x++)
     {
       for (int y=0; y<d; y++)
@@ -100,9 +100,9 @@ std::vector<Stabilizer> stab_x_bulk(int d)
   return vec;
 }
 
-std::vector<Stabilizer> stab_z_bulk(int d)
+Stabilizers stab_z_bulk(int d)
 {
-  std::vector<Stabilizer> vec;
+  Stabilizers vec;
   for (int x=0; x<d; x++)
     {
       for (int y=0; y<d; y++)
@@ -135,9 +135,9 @@ std::vector<Stabilizer> stab_z_bulk(int d)
   return vec;
 }
 
-std::vector<Stabilizer> stab_x_bdy(int d)
+Stabilizers stab_x_bdy(int d)
 {
-  std::vector<Stabilizer> vec;
+  Stabilizers vec;
 
   for (int y=0; y<d; y++)
     {
@@ -177,9 +177,9 @@ std::vector<Stabilizer> stab_x_bdy(int d)
   return vec;
 }
 
-std::vector<Stabilizer> stab_z_bdy(int d)
+Stabilizers stab_z_bdy(int d)
 {
-  std::vector<Stabilizer> vec;
+  Stabilizers vec;
   for (int x=0; x<d; x++)
     {
       if ((x%2==0) && ((x+1)<d))
@@ -257,9 +257,9 @@ int num2y_nu(int n, int dx, int dz)
   return n/dx;
 }
 
-std::vector<Stabilizer> stab_x_bulk_nu(int dx, int dz)
+Stabilizers stab_x_bulk_nu(int dx, int dz)
 { 
-  std::vector<Stabilizer> vec;
+  Stabilizers vec;
   for (int x=0; x<dx; x++)
     {
       for (int y=0; y<dz; y++)
@@ -292,9 +292,9 @@ std::vector<Stabilizer> stab_x_bulk_nu(int dx, int dz)
   return vec;
 }
 
-std::vector<Stabilizer> stab_z_bulk_nu(int dx, int dz)
+Stabilizers stab_z_bulk_nu(int dx, int dz)
 {
-  std::vector<Stabilizer> vec;
+  Stabilizers vec;
   for (int x=0; x<dx; x++)
     {
       for (int y=0; y<dz; y++)
@@ -327,9 +327,9 @@ std::vector<Stabilizer> stab_z_bulk_nu(int dx, int dz)
   return vec;
 }
 
-std::vector<Stabilizer> stab_x_bdy_nu(int dx, int dz)
+Stabilizers stab_x_bdy_nu(int dx, int dz)
 {
-  std::vector<Stabilizer> vec;
+  Stabilizers vec;
 
   for (int y=0; y<dz; y++)
     {
@@ -368,9 +368,9 @@ std::vector<Stabilizer> stab_x_bdy_nu(int dx, int dz)
   
   return vec;
 }
-std::vector<Stabilizer> stab_z_bdy_nu(int dx, int dz)
+Stabilizers stab_z_bdy_nu(int dx, int dz)
 {
-  std::vector<Stabilizer> vec;
+  Stabilizers vec;
   for (int x=0; x<dx; x++)
     {
       if ((x%2==0) && ((x+1)<dx))
@@ -409,19 +409,19 @@ std::vector<Stabilizer> stab_z_bdy_nu(int dx, int dz)
   return vec;
 }
 
-std::vector<Stabilizer> xchecks(int dx, int dz)
+Stabilizers xchecks(int dx, int dz)
 {
-  std::vector<Stabilizer> bulk = stab_x_bulk_nu(dx, dz);
-  std::vector<Stabilizer> bdy = stab_x_bdy_nu(dx, dz);
+  Stabilizers bulk = stab_x_bulk_nu(dx, dz);
+  Stabilizers bdy = stab_x_bdy_nu(dx, dz);
 
   bulk.insert(bulk.end(), bdy.begin(), bdy.end());
   return bulk;
 }
 
-std::vector<Stabilizer> zchecks(int dx, int dz)
+Stabilizers zchecks(int dx, int dz)
 {
-  std::vector<Stabilizer> bulk = stab_z_bulk_nu(dx, dz);
-  std::vector<Stabilizer> bdy = stab_z_bdy_nu(dx, dz);
+  Stabilizers bulk = stab_z_bulk_nu(dx, dz);
+  Stabilizers bdy = stab_z_bdy_nu(dx, dz);
 
   bulk.insert(bulk.end(), bdy.begin(), bdy.end());
   return bulk;
@@ -450,9 +450,9 @@ int logical_z_nu(int dx, int dz)
 // Convention is the bulk stabilizers first and then the boundary
 // stabilizers.
 
-std::vector<Stabilizer> measure_stab_x(int dx, int dz, int xstring)
+Stabilizers measure_stab_x(int dx, int dz, int xstring)
 {
-  std::vector<Stabilizer> checks = xchecks(dx, dz);
+  Stabilizers checks = xchecks(dx, dz);
 
   for (auto v: checks)
     {
@@ -461,9 +461,9 @@ std::vector<Stabilizer> measure_stab_x(int dx, int dz, int xstring)
   return checks;
 }
 
-std::vector<Stabilizer> measure_stab_z(int dx, int dz, int zstring)
+Stabilizers measure_stab_z(int dx, int dz, int zstring)
 {
-  std::vector<Stabilizer> checks = zchecks(dx, dz);
+  Stabilizers checks = zchecks(dx, dz);
 
   for (auto v: checks)
     {
