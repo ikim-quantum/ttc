@@ -22,8 +22,8 @@ Stabilizers zchecks(int dx, int dz);
 int logical_x(int dx, int dz);
 int logical_z(int dx, int dz);
 
-Stabilizers measure_stab_x(int dx, int dz, int xstring);
-Stabilizers measure_stab_z(int dx, int dz, int zstring);
+void measure_stab_x(Stabilizers SX, int xstring);
+void measure_stab_z(Stabilizers SZ, int zstring);
 
 int distance(Stabilizer s1, Stabilizer s2);
 

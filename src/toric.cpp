@@ -259,26 +259,22 @@ int logical_z(int dx, int dz)
 // Convention is the bulk stabilizers first and then the boundary
 // stabilizers.
 
-Stabilizers measure_stab_x(int dx, int dz, int xstring)
+void measure_stab_x(Stabilizers SX, int xstring)
 {
-  Stabilizers checks = xchecks(dx, dz);
 
-  for (auto v: checks)
+  for (auto v: SX)
     {
       v.parity = __builtin_popcount(xstring&v.bitrep)%2;
     }
-  return checks;
 }
 
-Stabilizers measure_stab_z(int dx, int dz, int zstring)
+void measure_stab_z(Stabilizers SZ, int zstring)
 {
-  Stabilizers checks = zchecks(dx, dz);
 
-  for (auto v: checks)
+  for (auto v: SZ)
     {
       v.parity = __builtin_popcount(zstring&v.bitrep)%2;
     }
-  return checks;
 }
 
 int distance(Stabilizer s1, Stabilizer s2)
