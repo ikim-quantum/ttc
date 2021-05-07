@@ -32,4 +32,8 @@ void measure_stab_z(Stabilizers SZ, int zstring);
 // Distance between stabilizers on a 2D lattice
 int distance(Stabilizer s1, Stabilizer s2);
 
+// Matching graph function
+void match_graph_x(Stabilizers SX, int xstring);
+void match_graph_z(Stabilizers SZ, int zstring);
+
 #endif // TORIC_HPP_

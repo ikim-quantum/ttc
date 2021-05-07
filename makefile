@@ -2,11 +2,8 @@ CXX=g++
 RM=rm -f
 CPPFLAGS=-std=c++11 -O2 -larmadillo
 
-tests: test_ppr test_toric test_floquet
+tests: test_toric test_floquet
 	RM *.o
-
-test_ppr: pauli_product.o ./test/test_ppr.cpp
-	$(CXX) -o test_ppr pauli_product.o ./test/test_ppr.cpp $(CPPFLAGS)
 
 test_toric: toric.o stabilizer.o ./test/test_toric.cpp
 	$(CXX) -o test_toric toric.o stabilizer.o ./test/test_toric.cpp $(CPPFLAGS)

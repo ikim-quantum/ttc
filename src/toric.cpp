@@ -293,13 +293,19 @@ int distance(Stabilizer s1, Stabilizer s2)
   return abs((a+b)/2) + abs((a-b)/2);
 }
 
-void match_graph_x(Stabilizer SX, int xstring)
+void match_graph_x(Stabilizers SX, int xstring)
 {
   measure_stab_x(SX, xstring);
 
+  Stabilizers SX_marked;
   // Find the indices of the stabilizers which detected an error.
-
-  // If the number of indices is odd, add an additional virtual excitation.
+  for (auto s:SX)
+    {
+      if (s.parity==true)
+	{
+	  SX_marked.push_back(s);
+	}
+    }
 
   // nodes_a
 
@@ -310,7 +316,6 @@ void match_graph_x(Stabilizer SX, int xstring)
   // Matching Graph should contain n_nodes, mates, n_edges, nodes_a, nodes_b, weights
 }
 
-void match_graph_x(Stabilizer SX, int xstring)
+void match_graph_z(Stabilizers SX, int xstring)
 {
-  measure_stab_z(SZ, zstring);
 }
