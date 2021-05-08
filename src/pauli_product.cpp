@@ -1,11 +1,10 @@
+#include "../include/qsim.hpp"
 #include "../include/pauli_product.hpp"
-#include <armadillo>
 #include <cmath>
 #include <stdlib.h>
 
 
 using namespace std;
-using namespace arma;
 
 // Applies a Pauli operator i^{xz} X^xZ^z to the k'th qubit to the state psi.
 // This algorithm takes at most 2^n complex number multiplications.
@@ -26,10 +25,10 @@ void apply_pauli_fast(int k, bool x, bool z, cx_dvec &psi)
 	      if ((i & ( 1 << k )) >> k == 0)
 		{
 		  cx_double temp1, temp2;
-		  temp1 = psi(i) * cx_double(0.0, 1.0);
-		  temp2 = psi((1<<k)|i) * cx_double(0.0, -1.0);
-		  psi(i) = temp2;
-		  psi((1<<k)|i) = temp1;
+		  temp1 = psi[i] * cx_double(0.0, 1.0);
+		  temp2 = psi[(1<<k)|i] * cx_double(0.0, -1.0);
+		  psi[i] = temp2;
+		  psi[(1<<k)|i] = temp1;
 		}
 	    }
 	}
@@ -39,7 +38,7 @@ void apply_pauli_fast(int k, bool x, bool z, cx_dvec &psi)
 	    {
 	      if ((i & ( 1 << k )) >> k == 1)
 		{
-		  psi(i) *= -1.0;
+		  psi[i] *= -1.0;
 		}
 	    }
 	}
@@ -53,10 +52,10 @@ void apply_pauli_fast(int k, bool x, bool z, cx_dvec &psi)
 	      if ((i & ( 1 << k )) >> k == 0)
 		{
 		  cx_double temp1, temp2;
-		  temp1 = psi(i);
-		  temp2 = psi((1<<k)|i);
-		  psi(i) = temp2;
-		  psi((1<<k)|i) = temp1;
+		  temp1 = psi[i];
+		  temp2 = psi[(1<<k)|i];
+		  psi[i] = temp2;
+		  psi[(1<<k)|i] = temp1;
 		}
 	    }
 	}
@@ -119,14 +118,14 @@ void apply_ppr(unsigned int x, unsigned int z, double theta, cx_dvec &psi)
 		break;
 	      }
 	    cx_double temp1, temp2;
-	    temp1 = psi(y) * c + psi(y^x) * s * phase1;
-	    temp2 = psi(y^x) * c + psi(y) * s * phase2;
-	    psi(y) = temp1;
-	    psi(y^x) = temp2;
+	    temp1 = psi[y] * c + psi[y^x] * s * phase1;
+	    temp2 = psi[y^x] * c + psi[y] * s * phase2;
+	    psi[y] = temp1;
+	    psi[y^x] = temp2;
 
-	    //psi(y) *= c; psi(y) += s * phase1 * psi(y^x);
-	    //psi(y^x) += s * phase2 * psi(y);
-	    //psi(y^x) *= csc;
+	    //psi[y] *= c; psi[y] += s * phase1 * psi[y^x];
+	    //psi[y^x] += s * phase2 * psi[y];
+	    //psi[y^x] *= csc;
 
 	    not_changed[y] = false; not_changed[y^x] = false;
 	}
@@ -165,7 +164,7 @@ double measure_pp(unsigned int x, unsigned int z, cx_dvec &psi)
 	  phase = cx_double(0.0, -1.0);
 	  break;
 	}
-      mysum += psi(y) * conj(psi(y^x)) * phase;
+      mysum += psi[y] * conj(psi[y^x]) * phase;
     }
   return real(mysum);
 }

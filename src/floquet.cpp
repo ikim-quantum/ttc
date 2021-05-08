@@ -1,14 +1,13 @@
+#include "../include/qsim.hpp"
 #include "../include/floquet.hpp"
 #include "../include/pauli_product.hpp"
 #include "../include/toric.hpp"
 #include "../include/stabilizer.hpp"
-#include <armadillo>
 #include <cmath>
 #include <stdlib.h>
 
 
 using namespace std;
-using namespace arma;
 
 void tc_stab_x(double theta, int dx, int dz, cx_dvec &psi)
 {
@@ -44,16 +43,14 @@ void tc_logical_z(int dx, int dz, cx_dvec &psi)
 
 cx_dvec initial_allzero(int dx, int dz)
 {
-  cx_dvec psi;
-  psi.zeros(1<<(dx*dz));
-  psi(0) = 1;
+  cx_dvec psi(1<<(dx*dz), 0.0);
+  psi[0] = 1.0;
   return psi;
 }
 
 cx_dvec initial_allplus(int dx, int dz)
 {
-  cx_dvec psi(1<<(dx*dz), fill::ones);
-  psi /= norm(psi);
+  cx_dvec psi(1<<(dx*dz), 1.0/sqrt(pow(2.0, dx*dz)));
   return psi;
 }
 

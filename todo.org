@@ -46,6 +46,7 @@
     - [ ] node_a
     - [ ] node_b
     - [ ] weights for each edge
-* [0/2] Moving away from Armadillo
-  - [ ] cx_double: std::complex<double>
-  - [ ] cx_dvec: std::vector<cx_double>
+* [3/3] Moving away from Armadillo
+  - [X] cx_double: std::complex<double>
+  - [X] cx_dvec: std::vector<cx_double>
+  - [X] Properly link

@@ -1,8 +1,7 @@
 #ifndef QSIM_PAULI_PRODUCT_HPP_
 #define QSIM_PAULI_PRODUCT_HPP_
 
-#include <armadillo>
-using namespace arma;
+#include "qsim.hpp"
 
 void apply_pauli(int k, bool x, bool z, cx_dvec &psi);
 void apply_pauli_slow(int k, bool x, bool z, cx_dvec &psi);
